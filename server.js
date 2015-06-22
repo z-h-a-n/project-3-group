@@ -20,3 +20,8 @@ app.get("/routes", function (req, res){
     res.send(routes)
   });
 });
+
+app.post("/routes", function (req, res){
+  db.Route.create(req.body, function(err, routes){
+  });
+});
