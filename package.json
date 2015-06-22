@@ -1,0 +1,28 @@
+{
+  "name": "project-3-group",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhan-w/project-3-group.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhan-w/project-3-group/issues"
+  },
+  "homepage": "https://github.com/zhan-w/project-3-group",
+  "dependencies": {
+    "body-parser": "^1.13.1",
+    "ejs": "^2.3.1",
+    "express": "^4.13.0",
+    "http": "0.0.0",
+    "mongoose": "^4.0.6",
+    "morgan": "^1.6.0",
+    "path": "^0.11.14"
+  }
+}
