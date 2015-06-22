@@ -4,7 +4,7 @@ var db = require('./models');
 var repl = REPL.start('Routes >');
 
 var comment = new db.Comment({body: 'jhgf'});
-
+// Nb I have used two different methods for adding commments to places.  The second one seems the better way (putting the code directly in the comments array when u create places)
 
 
 repl.context.db = db;
