@@ -14,3 +14,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.get('/', function(req, res){
   res.render('index');
  });
+
+app.get("/routes", function (req, res){
+  db.BlogPost.find({}, function(err, routes){
+    res.send(routes)
+  });
+});
