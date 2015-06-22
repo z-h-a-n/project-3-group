@@ -2,18 +2,16 @@ var Route = Route || {};
 var View = View || {};
 
 $(document).ready(function(){
-
   Route.all();
-
-
 });
 
 var Route = {
   all: function(){
     $.get('/routes', function(routes){
-      $.each(routes, function(index, routes){
-        console.log('route-all');
-        View.render($('#route-template'), routes, $('#list-routes'));
+      $.each(routes, function(index, route){
+        View.render($('#route-template'), route, $('#list-routes'));
+        createMarker(route);
+        createLine(route);
       })
     })
   }
