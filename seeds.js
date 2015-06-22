@@ -17,6 +17,10 @@ db.Comment.collection.remove();
 db.Route.create({
     start: 'LHR',
     end: 'PEK',
+    startlat: 51.507222,
+    startlong: -0.1275,
+    endlat: 39.916667, 
+    endlong: 116.383333,
     lengthDist: 2000,
     lengthTime: '4'
 
