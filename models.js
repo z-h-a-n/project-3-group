@@ -19,6 +19,10 @@ var PlaceSchema = new mongoose.Schema({
 var RouteSchema = new mongoose.Schema({
     start: String,
     end: String,
+    startlat: Number, 
+    startlong: Number,
+    endlat: Number,
+    endlong: Number,
     lengthDist: Number,
     lengthTime: String,
     places: [PlaceSchema]
