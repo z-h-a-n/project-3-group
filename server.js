@@ -16,7 +16,12 @@ app.get('/', function(req, res){
  });
 
 app.get("/routes", function (req, res){
-  db.BlogPost.find({}, function(err, routes){
+  db.Route.find({}, function(err, routes){
     res.send(routes)
+  });
+});
+
+app.post("/routes", function (req, res){
+  db.Route.create(req.body, function(err, routes){
   });
 });
