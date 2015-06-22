@@ -9,16 +9,17 @@ View.initialise();
 
 });
 
-View = {
+var View = {
   initialise: function() {
-    $('#route-form').on('submit', function(e) {
-      e.preventDefault();
-      Route.create($(this).serialize());
-    });
+    $.get('/routes', function(blogposts){
+      $.each(routes, function(index, routes){
+        View.render($('#route-template'), routes, $('#list-routes'));
+      })
+    })
   }
 }
 
-Route = {
+var Route = {
   all: function() {
     $.get('/routes', function(res) {
       var routes = JSON.parse(res)
