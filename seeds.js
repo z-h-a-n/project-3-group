@@ -25,7 +25,7 @@ db.Route.create({
     lengthTime: '4'
 
 }, function (err, route) {
-
+    console.log(route)
     db.Place.create({
         name: 'Kyber Pass',
     latitude: 28.689214000000000000,
