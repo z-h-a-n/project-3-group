@@ -22,12 +22,17 @@ app.get("/routes", function (req, res){
  });
 });
 
-app.post("/routes", function (req, res){
-  db.Route.create(req.body, function(err, routes){
-  });
-  var newRoute = req.body;
-  routes.length >= 1 ? newRoute.id = routes[routes.length -1].id +1 : newRoute.id = 0;
-  routes.push(newRoute);
-  res.send(JSON.stringify(newRoute));
+app.post("/route", function (req, res){
+	db.Route.findOne({start: req.body.origin, end: req.body.destination}, function (err, route) {
+			res.send(route);
+			console.log(route);
+	});
+
+//   db.Route.create(req.body, function(err, routes){
+// });
+// var newRoute = req.body;
+//   routes.length >= 1 ? newRoute.id = routes[routes.length -1].id +1 : newRoute.id = 0;
+//   routes.push(newRoute);
+//   res.send(JSON.stringify(newRoute));
 });
 

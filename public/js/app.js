@@ -1,8 +1,10 @@
 var Route = Route || {};
+var Place = Place || {};
 var View = View || {};
 
 $(document).ready(function(){
-  Route.all();
+  // Route.all();
+  View.initialize();
 });
 
 var Route = {
@@ -14,20 +16,27 @@ var Route = {
         showLine(route);
       })
     })
+  },
+  show: function(routeParams){
+    $.post('/route', routeParams)
+    .done(function(route) {
+      console.log(route);
+      showLine(route);
+    })
   }
 }
 
 var View = {
+  initialize: function(){
+    $('#route-form').on('submit', function(e){
+      e.preventDefault();
+      Route.show($(this).serialize());
+    });
+  },
   render: function(templateElement, object, parentElement){
     var template = templateElement.html();
     Mustache.parse(template);
     var rendered = Mustache.render(template, object);
     parentElement.append(rendered);
-  },
-  initialize: function(){
-    $('#route-form').on('submit', function(event){
-      event.preventDefault();
-      console.log($this);
-    })
   }
 }
