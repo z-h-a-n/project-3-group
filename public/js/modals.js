@@ -1,34 +1,19 @@
 
 function welcomeDialog() {
+  var height = window.innerHeight;
+  var width = window.innerWidth;
   $("#welcomeToSoar").dialog({
     dialogClass: "no-close",
-    buttons: [
-      {
-        text: "OK",
-        click: function() {
-          $( this ).dialog("close");
-        }
-      }
-    ],
-    height: 600,
-    width: 1000,
-    buttons: [
-      {
-        text: "Let's do it!",
-        "class": 'againButtonClass',
-        click: function() {
-          $( this ).dialog( "close");
-        }
-      }
-    ],
+    height: height,
+    width: width,
     modal: true,
-    close: function(event, ui) {
-      window.location.reload();
-    },
     autoOpen: true
   });
 }
  
+$("#closeModal").on("click", function(e){
+  $("#welcomeToSoar").dialog("close");
+});
 
 $(document).ready(function(){
 

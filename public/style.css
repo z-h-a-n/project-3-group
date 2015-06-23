@@ -1,6 +1,10 @@
+
+.route {width: 120px;}
+.footer{clear: both;}
+
 #map {
-	width: 1000px;
-	height: 500px;
+	width: 600px !important;
+	height: 500px !important;
 }
 
 path {
@@ -11,7 +15,7 @@ path {
 }
 
 #welcomeToSoar {
-  background: rgba(225,225,225,0.5);
+  background: rgba(255,255,255,0.9);
   font-size: 22px;
   text-align: center;
   line-height: center;
@@ -20,15 +24,12 @@ path {
   font-size: 40px;
 }
 
-/*.hidden {
-  display: none;
-}*/
 
 .no-close .ui-dialog-titlebar-close {
   display: none;
 }
 
-.againButtonClass {
+#closeModal {
   height:40px;
   width: 160px;
   font-size: 18px;
@@ -36,7 +37,8 @@ path {
   box-shadow: none;
   border: none;
   text-align: center;
-  position: relative;
   color: white;
   font-family: helvetica;
+  display: block;
+  margin-top: 50px;
 }
