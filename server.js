@@ -16,7 +16,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-<<<<<<< HEAD
+
 app.get('/', function(req, res){
  res.render('index');
 });
@@ -35,7 +35,7 @@ app.post("/routes", function (req, res){
   routes.push(newRoute);
   res.send(JSON.stringify(newRoute));
 });
-=======
+
 //  Start Server
 var server = http.createServer(app);
 server.listen(process.env.PORT || 3000);
@@ -53,5 +53,5 @@ app.use('/app', router)
 app.use('/api', router);
 
 
->>>>>>> e7855e0bef668fcfb0da0251e26227bef5a6a573
+
 
