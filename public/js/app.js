@@ -10,8 +10,8 @@ var Route = {
     $.get('/routes', function(routes){
       $.each(routes, function(index, route){
         View.render($('#route-template'), route, $('#list-routes'));
-        createMarker(route);
-        createLine(route);
+        showMarker(route);
+        showLine(route);
       })
     })
   }
