@@ -4,7 +4,6 @@ var http = require('http');
 var bodyParser = require ('body-parser');
 var db = require('./models');
 
-
 //  Express
 var app = express();
 var router = express.Router();
@@ -21,16 +20,17 @@ var server = http.createServer(app);
 server.listen(process.env.PORT || 3000);
 
 //Routing
-var placesRoute = router.route('/places');
-var commentsRoute = router.route('/comments');
-// // Create a new route with the /places/:place_id prefix
-var placeRoute = router.route('/places/:place_id');
+var placesRoute = router.route('/routes/:route_id/places');
+var placeRoute = router.route('/routes/:route_id/places/:place_id');
 
-require('./app/routes.js')(app, placesRoute, commentsRoute, db, router)
+var commentsRoute = router.route('/routes/:route_id/places/:place_id/comments');
+var commentRoute = router.route('/routes/:route_id/places/:place_id/comments/:comment_id');
+
+
+require('./app/routes.js')(app, placesRoute, commentsRoute, db, router, placeRoute, commentRoute)
 
 app.use('/app', router)
 // Register all our routes with /api
 app.use('/api', router);
-
 
 
