@@ -14,9 +14,25 @@ path {
   background: rgba(225,225,225,0.5);
   font-size: 22px;
   text-align: center;
+  line-height: center;
   padding: 20px;
 }
 
-.hidden {
+/*.hidden {
   display: none;
+}*/
+
+.no-close .ui-dialog-titlebar-close {
+  display: none;
+}
+
+.againButtonClass {
+  height:40px;
+  width: 160px;
+  font-size: 18px;
+  background-color: rgba(72,174,35,0.75);
+  box-shadow: none;
+  border: none;
+  text-align: center;
+  position: relative;
 }
