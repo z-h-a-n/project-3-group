@@ -1,24 +1,42 @@
+// Depedencies
 var express = require('express');
-var app = express();
 var http = require('http');
-var server = http.createServer(app);
-server.listen(process.env.PORT || 3000);
 var bodyParser = require ('body-parser');
 var db = require('./models');
 
+//  Express
+var app = express();
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
+
+//  Views / File system(?)
 app.set('views', './views');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({extended: true}));
 
-app.get('/', function(req, res){
+//  Start Server
+var server = http.createServer(app);
+server.listen(process.env.PORT || 3000);
+
+//  Routes
+app.get('/', function (req, res){
  res.render('index');
 });
 
+// Places Index Path
+app.get("/places", function (req, res){
+  db.Place.find({}, function (err, places){
+    if(err)
+      console.log(error)
+  res.send(places)
+ });
+});
+
+// Routes index Path
 app.get("/routes", function (req, res){
- db.Route.find({}, function(err, routes){
- 		console.log(routes);
-   res.send(routes)
+  db.Route.find({}, function (err, routes){
+  console.log(routes);
+  res.send(routes)
  });
 });
 

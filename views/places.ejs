@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include partials/head %>
+</head>
+
+<body>
+  <h1>Welcome to Soar</h1>
+  <h2>This should be an admin list of places and details</h2>
+
+  <ul id="list-places">
+    </ul>
+
+  <script type="x-tmpl-mustache" id="place-template">
+  <div class="row">
+    <div class="place">
+      <span class="name">{{ name }}</span>
+      <span class="image"> {{ imageurl }}</span>
+    </div>
+  </div>
+</script>
+  
+</body> 
+</html>

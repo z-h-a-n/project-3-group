@@ -1,6 +1,5 @@
 console.log('hello');
 
-
 	L.mapbox.accessToken = 'pk.eyJ1IjoiemhhbnciLCJhIjoiYzcwMjAwYzQ4MWYxZGQyMjkxMTFkYWQ0M2YxMjcwN2YifQ.q_Daj_EF2x_eGq6dl_jORw';
 
 	var map = L.mapbox.map('map', 'mapbox.satellite').setView([40, -74.50], 2);
@@ -41,6 +40,10 @@ console.log('hello');
 		    properties: {
 		        title: 'Peregrine Espresso',
 		        description: '1718 14th St NW, Washington, DC',
+
+            // Note - We need to make equivilant fields in our models to hold
+            // descriptions and titles for our markers. - Alex
+
 		        // one can customize markers by adding simplestyle properties
 		        // https://www.mapbox.com/guides/an-open-platform/#simplestyle
 		        'marker-size': 'large',
