@@ -13,7 +13,6 @@ var Route = {
       console.log(routes);
       $.each(routes, function(index, route){
         View.render($('#route-template'), route, $('#list-routes'));
-        showMarker(route);
         showLine(route);
       })
     })
@@ -23,6 +22,8 @@ var Route = {
     .done(function(route) {
       console.log(route);
       showLine(route);
+      $("path").attr("data-id", route._id);
+      Place.all();
     })
   }
 }

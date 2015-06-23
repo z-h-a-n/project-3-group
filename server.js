@@ -21,7 +21,7 @@ server.listen(process.env.PORT || 3000);
 
 //  Routes
 app.get('/', function (req, res){
- console.log(req.query);
+ // console.log(req.query);
  res.render('index');
 
 });
@@ -30,7 +30,7 @@ app.get('/', function (req, res){
 // Routes Index Path
 app.get("/routes", function (req, res){
   db.Route.find({}, function (err, routes){
-    console.log(routes);
+    // console.log(routes);
     res.send(routes)
  });
 });
@@ -38,28 +38,28 @@ app.get("/routes", function (req, res){
 app.get("/routes/:id/edit", function (req, res) {
   console.log(req.params.id);
   db.Route.findById(req.params.id, function (err, route){
-    console.log(route);
+    // console.log(route);
     res.render('edit', {route:route})
  });
 });
 
-
+// display the route entered in the form
 app.post("/route", function (req, res){
 	db.Route.findOne({start: req.body.origin, end: req.body.destination}, function (err, route) {
 			res.send(route);
-			console.log(route);
 	});
 });
 
+// from api
 app.post("/routes/:id/update", function (req, res) {
   console.log(req.params.id);
   db.Route.findById(req.params.id, function (err, route){
-    console.log(route);
+    // console.log(route);
     res.render('edit', {route:route})
  });
 });
 
-// Routes Post Path
+// Routes Post Path from api
 app.post("/routes/new", function (req, res){
   db.Route.create(req.body, function(err, routes){
   });
@@ -73,6 +73,7 @@ app.post("/routes/new", function (req, res){
 // PLACES ROUTES
 // Places Index Path
 app.get("/places", function (req, res){
+	// console.log(req.params.id);
   db.Place.find({}, function (err, places){
     if(err)
       console.log(error)
@@ -80,13 +81,21 @@ app.get("/places", function (req, res){
  });
 });
 
-// Places API/Json path
-app.get("/api/places", function (req, res){
-  db.Place.find({}, function (err, places){
-    if(err)
-      console.log(error)
-  res.json(places)
+// display markers belong to the same route places.js
+app.get("/routes/:id", function (req, res){
+  db.Route.find({_id: req.params.id}, function (err, route){
+  	res.send(route[0].places);
+  	// console.log(route[0].places);
  });
+});
+
+app.post("/routes/:id", function (req, res){
+	db.Route.find({_id: req.params.id}, function(err, route) {
+		db.Place.create({longitude: req.body.lng, latitude: req.body.lat}, function(err, place){
+			route[0].places.push(place);
+			route[0].save();
+		});
+	});
 });
 
 // // Comments Routes
