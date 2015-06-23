@@ -15,7 +15,9 @@ path {
   font-size: 22px;
   text-align: center;
   line-height: center;
-  padding: 20px;
+  padding: 200px;
+  font-family: helvetica;
+  font-size: 40px;
 }
 
 /*.hidden {
@@ -30,9 +32,11 @@ path {
   height:40px;
   width: 160px;
   font-size: 18px;
-  background-color: rgba(72,174,35,0.75);
+  background-color: rgba(0,0,0,0.5);
   box-shadow: none;
   border: none;
   text-align: center;
   position: relative;
+  color: white;
+  font-family: helvetica;
 }
