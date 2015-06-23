@@ -9,3 +9,14 @@ path {
   stroke-opacity: 1;
   stroke-dasharray: 5,5;
 }
+
+#welcomeToSoar {
+  background: rgba(225,225,225,0.5);
+  font-size: 22px;
+  text-align: center;
+  padding: 20px;
+}
+
+.hidden {
+  display: none;
+}

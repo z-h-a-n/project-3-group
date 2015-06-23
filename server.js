@@ -15,9 +15,11 @@ app.get('/', function(req, res){
  res.render('index');
 });
 
+//ROUTES
+
 app.get("/routes", function (req, res){
  db.Route.find({}, function(err, routes){
-   res.send(routes)
+   res.send(routes);
  });
 });
 
@@ -25,8 +27,8 @@ app.post("/routes", function (req, res){
   db.Route.create(req.body, function(err, routes){
   });
   var newRoute = req.body;
-  routes.length >= 1 ? newRoute.id = routes[routes.length -1].id +1 : newRoute.id = 0;
   routes.push(newRoute);
   res.send(JSON.stringify(newRoute));
 });
+
 
