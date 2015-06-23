@@ -42,6 +42,7 @@ var Route = {
   }
 }
 
+// is this doing anything?
 var Place = {
   all: function(){
     $.get('/places', function(places){
