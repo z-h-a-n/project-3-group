@@ -19,9 +19,12 @@ path {
   font-size: 22px;
   text-align: center;
   line-height: center;
-  padding: 200px;
-  font-family: helvetica;
-  font-size: 40px;
+  padding: 100px;
+  color: #ff4303;
+  font-family: 'Exo 2', sans-serif;
+  text-shadow: 0 0 0.2em #00000F, 0 0 0.2em #00000F,
+        0 0 0.2em #00000F;
+  font-size: 70px;
 }
 
 
@@ -33,12 +36,11 @@ path {
   height:40px;
   width: 160px;
   font-size: 18px;
-  background-color: rgba(0,0,0,0.5);
+  background-color: #ff4303;
   box-shadow: none;
   border: none;
   text-align: center;
   color: white;
-  font-family: helvetica;
-  display: block;
-  margin-top: 50px;
+  font-family: 'Exo 2', sans-serif;
+  margin-top: 110px;
 }

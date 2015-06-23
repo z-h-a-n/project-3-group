@@ -7,7 +7,11 @@ function welcomeDialog() {
     height: height,
     width: width,
     modal: true,
-    autoOpen: true
+    autoOpen: true,
+    hide: {
+        effect: "fadeOut",
+        duration: 1000
+    }
   });
 }
  
