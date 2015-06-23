@@ -1,8 +1,6 @@
-var Route = Route || {};
-var View = View || {};
 
-$(document).ready(function(){
 
+<<<<<<< HEAD
   Route.all();
 
 
@@ -52,3 +50,5 @@ var View = {
 
 
 
+=======
+>>>>>>> e7855e0bef668fcfb0da0251e26227bef5a6a573

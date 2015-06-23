@@ -1,16 +1,22 @@
+// Depedencies
 var express = require('express');
-var app = express();
 var http = require('http');
-var server = http.createServer(app);
-server.listen(process.env.PORT || 3000);
 var bodyParser = require ('body-parser');
 var db = require('./models');
 
+
+//  Express
+var app = express();
+var router = express.Router();
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
+
+//  Views / File system(?)
 app.set('views', './views');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({extended: true}));
 
+<<<<<<< HEAD
 app.get('/', function(req, res){
  res.render('index');
 });
@@ -29,4 +35,23 @@ app.post("/routes", function (req, res){
   routes.push(newRoute);
   res.send(JSON.stringify(newRoute));
 });
+=======
+//  Start Server
+var server = http.createServer(app);
+server.listen(process.env.PORT || 3000);
+
+//Routing
+var placesRoute = router.route('/places');
+var commentsRoute = router.route('/comments');
+// // Create a new route with the /places/:place_id prefix
+var placeRoute = router.route('/places/:place_id');
+
+require('./app/routes.js')(app, placesRoute, commentsRoute, db, router)
+
+app.use('/app', router)
+// Register all our routes with /api
+app.use('/api', router);
+
+
+>>>>>>> e7855e0bef668fcfb0da0251e26227bef5a6a573
 
