@@ -9,14 +9,14 @@ $(document).ready(function(){
 
 var Place = {
   all: function(){
-    $.get('/routes/' + $("path").attr('data-id'), 
+    $.get('/api/routes/' + $("path").attr('data-id') + '/places', 
       function(places){
       showMarker(places); 
     })    
   },
   create: function(lng, lat){
     console.log(lng, lat);
-    $.post('/routes/' + $("path").attr('data-id'), {lng: lng, lat:lat})
+    $.post('/api/routes/' + $("path").attr('data-id'), {lng: lng, lat:lat} + '/places')
   }
 }
 

@@ -42,11 +42,12 @@ function showMarker (places) {
         description: '',
         // one can customize markers by adding simplestyle properties
         // https://www.mapbox.com/guides/an-open-platform/#simplestyle
-        'marker-size': 'medium',
+        'marker-size': 'small',
         'marker-color': '#FFFFFF',
         'marker-symbol': 'cross'
-    }
-	}).addTo(map);
+    },
+	}).bindPopup('<button class="trigger">delete</button>')
+		.addTo(map);
 	}
 };
 

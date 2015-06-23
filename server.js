@@ -82,14 +82,15 @@ app.get("/places", function (req, res){
 });
 
 // display markers belong to the same route places.js
-app.get("/routes/:id", function (req, res){
+app.get("/api/routes/:id/places", function (req, res){
+	debugger;
   db.Route.find({_id: req.params.id}, function (err, route){
   	res.send(route[0].places);
   	// console.log(route[0].places);
  });
 });
 
-app.post("/routes/:id", function (req, res){
+app.post("/api/routes/:id/places", function (req, res){
 	db.Route.find({_id: req.params.id}, function(err, route) {
 		db.Place.create({longitude: req.body.lng, latitude: req.body.lat}, function(err, place){
 			route[0].places.push(place);
