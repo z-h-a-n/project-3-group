@@ -58,7 +58,7 @@ db.Route.create({
 
   }, function (err, route) {
     db.Place.create({
-        name: 'Kyber Pass',
+        name: 'Ladakh Pass',
     latitude: 28.689214000000000000,
     longitude: 77.223989500000020000,
     comments: [comment],

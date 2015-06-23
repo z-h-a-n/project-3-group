@@ -1,6 +1,10 @@
+
+.route {width: 120px;}
+.footer{clear: both;}
+
 #map {
-	width: 1000px;
-	height: 500px;
+	width: 600px !important;
+	height: 500px !important;
 }
 
 path {
