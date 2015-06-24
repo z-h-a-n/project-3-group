@@ -3,7 +3,6 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiemhhbnciLCJhIjoiYzcwMjAwYzQ4MWYxZGQyMjkxMTFkY
 
 // var map = L.mapbox.map('map', 'mapbox.dark').setView([30, 0], 2);
 
-
 var map = L.mapbox.map('map', null, {
       maxZoom: 18
   }).setView([30, 0], 2);
@@ -20,9 +19,7 @@ function zoom(e) {
 	if (map._zoom > 10) {
 		layers.Satellite.addTo(map);
 	} else {
-		console.log(map._zoom);
-		console.log('dark')
-		layers.Dark.addTo(map);
+		map.removeLayer(layers.Satellite);
 	}
 }
 

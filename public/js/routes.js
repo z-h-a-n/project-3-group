@@ -28,7 +28,6 @@ var Route = {
   }
 }
 
-
 View = {
   initialize: function(){
     $('#route-form').on('submit', function(e){
