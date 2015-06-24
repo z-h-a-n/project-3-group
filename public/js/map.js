@@ -16,12 +16,13 @@ function showLine (route) {
 	L.geoJson(line.json()).addTo(map);
 };
 
-function showMarker (route) {
-	for (i=0; i<route.places.length; i++) {
-	console.log(route.places[i].longitude);
-	console.log(route.places[i].latitude);
-	var x = route.places[i].longitude;
-	var y = route.places[i].latitude;
+function showMarker (places) {
+	for (i=0; i<places.length; i++) {
+	console.log(places[i].longitude);
+	console.log(places[i].latitude);
+	var x = places[i].longitude;
+	var y = places[i].latitude;
+	var title = places[i].name;
 	
 	L.mapbox.featureLayer({
     // this feature is in the GeoJSON format: see geojson.org
@@ -37,19 +38,19 @@ function showMarker (route) {
         ]
     },
     properties: {
-        title: 'placeholder',
-        description: 'placeholder map.js',
+        title: title,
+        description: '',
         // one can customize markers by adding simplestyle properties
         // https://www.mapbox.com/guides/an-open-platform/#simplestyle
-        'marker-size': 'medium',
+        'marker-size': 'small',
         'marker-color': '#FFFFFF',
         'marker-symbol': 'cross'
-    }
-	}).addTo(map);
+    },
+	}).bindPopup('<button class="trigger">delete</button>')
+		.addTo(map);
 	}
 };
 
-// add a marker on page on click
 map.on('click', function(e) {
 	L.mapbox.featureLayer({
     type: 'Feature',
@@ -63,47 +64,13 @@ map.on('click', function(e) {
 	  properties: {
 	      title: 'placeholder',
 	      description: 'placeholder map.js',
-	      'marker-size': 'medium',
+	      'marker-size': 'small',
 	      'marker-color': '#FFFFFF',
 	      'marker-symbol': 'cross'
 	  }
 	}).addTo(map);
+	Place.create(e.latlng.lng, e.latlng.lat);
 });
 
-function createMarker (route) {
-	for (i=0; i<route.places.length; i++) {
-	console.log(route.places[i].longitude);
-	console.log(route.places[i].latitude);
-	var x = route.places[i].longitude;
-	var y = route.places[i].latitude;
-	
-	L.mapbox.featureLayer({
-	    // this feature is in the GeoJSON format: see geojson.org
-	    // for the full specification
-	    type: 'Feature',
-	    geometry: {
-	        type: 'Point',
-	        // coordinates here are in longitude, latitude order because
-	        // x, y is the standard for GeoJSON and many formats
-	        coordinates: [
-	          x,
-	          y 
-	        ]
-	    },
-	    properties: {
-	        title: 'Peregrine Espresso',
-	        description: '1718 14th St NW, Washington, DC',
 
-          // Note - We need to make equivilant fields in our models to hold
-          // descriptions and titles for our markers. - Alex
-
-	        // one can customize markers by adding simplestyle properties
-	        // https://www.mapbox.com/guides/an-open-platform/#simplestyle
-	        'marker-size': 'large',
-	        'marker-color': '#BE9A6B',
-	        'marker-symbol': 'cafe'
-	    }
-	}).addTo(map);
-	}
-};
 

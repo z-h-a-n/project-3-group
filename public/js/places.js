@@ -3,31 +3,28 @@ var View = View || {};
 var Place = Place || {};
 
 $(document).ready(function(){
- 
-  console.log("inside public/js/places.js")
-
-  Place.all();
-  // View.initialise();
+  // console.log("inside public/js/places.js")
+  View.initialize();
 });
 
 var Place = {
   all: function(){
-    console.log('place var is working')
-    $.get('/api/places', function(places){
-      $.each(places, function(index, place){
-        View.render($('#place-template'), place, $('#list-places'));        
-      })
-    console.log(places)
-    })
+    $.get('/api/routes/' + $("path").attr('data-id') + '/places', 
+      function(places){
+      showMarker(places); 
+    })    
+  },
+  create: function(lng, lat){
+    console.log(lng, lat);
+    $.post('/api/routes/' + $("path").attr('data-id'), {lng: lng, lat:lat} + '/places')
   }
 }
-
 
 View = {
   initialize: function(){
     $('#route-form').on('submit', function(e){
       e.preventDefault();
-      console.log($this);
+      // console.log($this);
       Route.create($(this).serialize());
     });
     // Event delegation - Need to talk to TA about this
