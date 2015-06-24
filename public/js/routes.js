@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 var Route = {
   all: function(){
-    $.get('/routes', function(routes){
+    $.get('routes', function(routes){
       console.log(routes);
       $.each(routes, function(index, route){
         View.render($('#route-template'), route, $('#list-routes'));
@@ -20,7 +20,7 @@ var Route = {
     })
   },
   show: function(routeParams){
-    $.post('/route', routeParams)
+    $.post('/api/routes', routeParams)
     .done(function(route) {
       console.log(route);
       showLine(route);

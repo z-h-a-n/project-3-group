@@ -24,6 +24,8 @@ server.listen(process.env.PORT || 3000);
 var routesRoute = router.route('/routes');
 // Create a new route with the /routes/:route_id prefix
 var routeRoute = router.route('/routes/:route_id');
+// var routeRoute = router.route('/routes/:route_id');
+
 // This maybe should be in server.js as well but seems ok?
 
 var placesRoute = router.route('/routes/:route_id/places');
