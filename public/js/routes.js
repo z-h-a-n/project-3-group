@@ -1,3 +1,5 @@
+// The routes object/model might be better named flight id.
+
 var View = View || {};
 var Route = Route || {};
 
@@ -9,7 +11,7 @@ $(document).ready(function(){
 
 var Route = {
   all: function(){
-    $.get('/routes', function(routes){
+    $.get('routes', function(routes){
       console.log(routes);
       $.each(routes, function(index, route){
         View.render($('#route-template'), route, $('#list-routes'));

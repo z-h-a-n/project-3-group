@@ -4,7 +4,6 @@ var http = require('http');
 var bodyParser = require ('body-parser');
 var db = require('./models');
 
-
 //  Express
 var app = express();
 var router = express.Router();
@@ -12,10 +11,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
-//  Views / File system(?)
+//  Views / ejs Templates
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
+<<<<<<< HEAD
 
 
 //  Routes
@@ -109,22 +109,31 @@ app.post("/api/routes/:id/places", function (req, res){
 // // Comments Routes
 });
 
+=======
+>>>>>>> 18b636a10dc6a0eec94212857d2f095c59b3240b
 //  Start Server
 var server = http.createServer(app);
 server.listen(process.env.PORT || 3000);
 
 //Routing
-var placesRoute = router.route('/places');
-var commentsRoute = router.route('/comments');
-// // Create a new route with the /places/:place_id prefix
-var placeRoute = router.route('/places/:place_id');
+// Create a new route with the prefix /routes for GET and POST
+var routesRoute = router.route('/routes');
+// Create a new route with the /routes/:route_id prefix
+var routeRoute = router.route('/routes/:route_id');
+// var routeRoute = router.route('/routes/:route_id');
 
-require('./app/routes.js')(app, placesRoute, commentsRoute, db, router)
+// This maybe should be in server.js as well but seems ok?
 
-app.use('/app', router)
+var placesRoute = router.route('/routes/:route_id/places');
+var placeRoute = router.route('/routes/:route_id/places/:place_id');
+
+var commentsRoute = router.route('/routes/:route_id/places/:place_id/comments');
+var commentRoute = router.route('/routes/:route_id/places/:place_id/comments/:comment_id');
+
+require('./app/routes.js')(app, db, router, routesRoute, routeRoute, placesRoute, placeRoute, commentsRoute, commentRoute);
+// Sending the needed stuff to routes.js
+
+// This line may be defunct but not 100% sure on that -A
+app.use('/app', router);
 // Register all our routes with /api
 app.use('/api', router);
-
-
-
-
