@@ -12,7 +12,8 @@ var PlaceSchema = new mongoose.Schema({
     latitude: Number,
     longitude: Number,
     comments: [CommentSchema],
-    imageurl: String
+    imageurl: String,
+    message: String
 
 });
 
