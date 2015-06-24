@@ -17,7 +17,6 @@ layers.Dark.addTo(map);
 
 map.on('zoomend', zoom);
 function zoom(e) {
-
 	if (map._zoom > 10) {
 		layers.Satellite.addTo(map);
 	} else {
@@ -26,10 +25,6 @@ function zoom(e) {
 		layers.Dark.addTo(map);
 	}
 }
-
-// map.featureLayer.on('click', function(e) {
-// 	map.panTo(e.layer.getLatLng());
-// }); 
 
 L.control.fullscreen().addTo(map);
 
