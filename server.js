@@ -15,21 +15,18 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-<<<<<<< HEAD
-
-
 //  Routes
 app.get('/', function (req, res){
  // console.log(req.query);
  res.render('index');
 });
 
-app.get("/routes", function (req, res){
-  db.Route.find({}, function (err, routes){
-    // console.log(routes);
-    res.send(routes)
- });
-});
+// app.get("/routes", function (req, res){
+//   db.Route.find({}, function (err, routes){
+//     // console.log(routes);
+//     res.send(routes)
+//  });
+// });
 
 app.get("/routes/:id/edit", function (req, res) {
   console.log(req.params.id);
@@ -40,16 +37,25 @@ app.get("/routes/:id/edit", function (req, res) {
 });
 
 // display the route entered in the form
-app.post("/route", function (req, res){
-	db.Route.findOne({start: req.body.origin, end: req.body.destination}, function (err, route) {
-			res.send(route);
-	});
-});
 
-app.get("/route", function (req, res){
-	db.Route.findOne({start: req.body.origin, end: req.body.destination}, function (err, route) {
-			res.send(route);
-	});
+// app.get("/route", function (req, res){
+// 	db.Route.findOne({start: req.query.origin, end: req.query.destination}, function (err, route) {
+// 			res.send(route);
+// 	});
+// });
+
+
+app.get("/routes", function (req, res){
+  if(req.query['origin'] && req.query['destination']) {
+    db.Route.findOne({start: req.query.origin, end: req.query.destination}, function (err, route) {
+      res.send(route);
+    });
+  } else {
+    db.Route.find({}, function (err, routes){
+    // console.log(routes);
+      res.send(routes)
+    });
+  }
 });
 
 // from api
@@ -107,10 +113,8 @@ app.post("/api/routes/:id/places", function (req, res){
 });
 
 // // Comments Routes
-});
 
-=======
->>>>>>> 18b636a10dc6a0eec94212857d2f095c59b3240b
+
 //  Start Server
 var server = http.createServer(app);
 server.listen(process.env.PORT || 3000);
