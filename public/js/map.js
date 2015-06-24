@@ -15,13 +15,14 @@ var layers = {
 
 layers.Dark.addTo(map);
 
-
 map.on('zoomend', zoom);
-
 function zoom(e) {
+
 	if (map._zoom > 10) {
 		layers.Satellite.addTo(map);
 	} else {
+		console.log(map._zoom);
+		console.log('dark')
 		layers.Dark.addTo(map);
 	}
 }
