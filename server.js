@@ -39,3 +39,6 @@ require('./app/routes.js')(app, db, router, routesRoute, routeRoute, placesRoute
 app.use('/app', router);
 // Register all our routes with /api
 app.use('/api', router);
+
+
+
