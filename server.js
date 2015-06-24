@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
-//  Views / File system(?)
+//  Views / ejs Templates
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
