@@ -3,6 +3,22 @@
 <head>
   <% include partials/head %>
 </head>
+
+<body>
+  <h1>Welcome to Soar</h1>
+  <h2>Enter your route and let's fly!</h2>
+  <form id="route-form" class="form-inline">
+      <input name="origin" type="text" class="form-control" id="new-food" placeholder="Flight Origin">
+      <input name="destination" class="form-control" placeholder="Flight Destination">
+      <button type="submit" class="btn btn-default">Find Route</button>
+
+      <ul id="list-routes">
+      </ul>
+  </form>
+  <div id="welcomeToSoar">
+    WELCOME TO SOAR! <br> Discover what's out there...
+    <button id="closeModal">Let's do it!</button>
+  </div>  
 <body class="container">
 <header>
   <% include partials/header %>
@@ -10,9 +26,7 @@
   <main>    
     <div id="row">  
       <div class="col-sm-8"> 
-          <div id='map' class='dark' data-id=""></div>
-          <script src="/js/app.js"></script>
-          <script src="/js/map.js"></script>
+        <div id='map' class='dark' ></div>
       </div>
       <div class="col-sm-4">
         <div class="well">
@@ -28,6 +42,10 @@
   </main>
 <script src="/js/places.js"></script>
 <script src="/js/routes.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/map.js"></script>
+<script src="/js/modals.js"></script>
+
 </body>
 <footer>
     <% include partials/footer %>
@@ -54,5 +72,7 @@
     </div>
   </div>
 </script>
+
+</html>
 
 </html>

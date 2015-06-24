@@ -4,6 +4,7 @@ var http = require('http');
 var bodyParser = require ('body-parser');
 var db = require('./models');
 
+
 //  Express
 var app = express();
 var router = express.Router();
@@ -15,19 +16,14 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-//  Start Server
-var server = http.createServer(app);
-server.listen(process.env.PORT || 3000);
+
 
 //  Routes
 app.get('/', function (req, res){
  // console.log(req.query);
  res.render('index');
-
 });
 
-// ROUTE Routes
-// Routes Index Path
 app.get("/routes", function (req, res){
   db.Route.find({}, function (err, routes){
     // console.log(routes);
@@ -61,6 +57,12 @@ app.post("/routes/:id/update", function (req, res) {
 
 // Routes Post Path from api
 app.post("/routes/new", function (req, res){
+ db.Route.find({}, function(err, routes){
+   res.send(routes)
+ });
+});
+
+app.post("/routes", function (req, res){
   db.Route.create(req.body, function(err, routes){
   });
   var newRoute = req.body;
@@ -83,7 +85,6 @@ app.get("/places", function (req, res){
 
 // display markers belong to the same route places.js
 app.get("/api/routes/:id/places", function (req, res){
-	debugger;
   db.Route.find({_id: req.params.id}, function (err, route){
   	res.send(route[0].places);
   	// console.log(route[0].places);
@@ -100,19 +101,24 @@ app.post("/api/routes/:id/places", function (req, res){
 });
 
 // // Comments Routes
+});
 
-// // Create a new route with the prefix /comment
-// var commentsRoute = router.route('/comments');
+//  Start Server
+var server = http.createServer(app);
+server.listen(process.env.PORT || 3000);
 
-// // Create endpoint /api/beers for POSTS
-// commentsRoute.post(function(req, res) {
-//   // Create a new instance of the Beer model
-//   var comment = new Comment();
+//Routing
+var placesRoute = router.route('/places');
+var commentsRoute = router.route('/comments');
+// // Create a new route with the /places/:place_id prefix
+var placeRoute = router.route('/places/:place_id');
 
-//   // Set the beer properties that came from the POST data
-//   comment.username = req.body.name;
-//   comment.body = req.body.type;
-//   comment.createdtime = req.body.quantity;
+require('./app/routes.js')(app, placesRoute, commentsRoute, db, router)
+
+app.use('/app', router)
+// Register all our routes with /api
+app.use('/api', router);
+
 
 
 
