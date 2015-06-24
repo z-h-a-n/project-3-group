@@ -46,6 +46,12 @@ app.post("/route", function (req, res){
 	});
 });
 
+app.get("/route", function (req, res){
+	db.Route.findOne({start: req.body.origin, end: req.body.destination}, function (err, route) {
+			res.send(route);
+	});
+});
+
 // from api
 app.post("/routes/:id/update", function (req, res) {
   console.log(req.params.id);

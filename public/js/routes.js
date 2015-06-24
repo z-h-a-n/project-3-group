@@ -18,7 +18,7 @@ var Route = {
     })
   },
   show: function(routeParams){
-    $.post('/route', routeParams)
+    $.get('/route', routeParams)
     .done(function(route) {
       console.log(route);
       showLine(route);
@@ -27,7 +27,6 @@ var Route = {
     })
   }
 }
-
 
 View = {
   initialize: function(){
