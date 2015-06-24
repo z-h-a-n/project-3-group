@@ -107,3 +107,12 @@ function createMarker (route) {
 	}
 };
 
+function lineDraw() {
+  polyline.addLatLng(
+    L.latLng(
+      Math.cos(pointsAdded /20) * 30,
+      pointsAdded));
+  map.setView([0, pointsAdded], 3);
+  if (++pointsAdded < 360) window.setTimeout(add, 100);
+}
+
