@@ -1,10 +1,63 @@
+/*.route {width: 120px;}*/
 
-.route {width: 120px;}
-.footer{clear: both;}
+body {
+	font-family: 'Roboto', sans-serif;
+	color: rgba(255, 230, 0, 1);
+}
+
+h1 {
+	color: rgba(255, 230, 0, .8);
+	padding: 20px;
+  text-align: center;
+  font-size: 40px;
+	letter-spacing: 10px;
+}
+
+input {
+	background-color: black;
+  margin-left: 10px;
+  border: 1px solid;
+  border-color: rgba(255, 230, 0, 1);
+}
+
+button {
+	margin-left: 10px;
+  width: 171px;
+  background-color: black;
+  border: 1px solid;
+  text-align: left;
+}
+
+::-webkit-input-placeholder {
+   color: rgba(255, 230, 0, 1);
+}
+
+.footer { 
+	clear: both;
+	position:fixed;
+	left:0px;
+	bottom:0px;
+	height:30px;
+	width:100%;
+}
+
+.navbar-header {
+	width: 200px;
+	height: 100%;
+  position: fixed;
+  right: 0px;
+  background-color: rgba(0, 0, 0, .5);
+
+}
 
 #map {
-	width: 600px !important;
-	height: 500px !important;
+	position: fixed; 
+  top: 0; 
+  left: 0; 
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
 }
 
 path {
