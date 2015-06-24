@@ -1,3 +1,5 @@
+// The routes object/model might be better named flight id.
+
 var View = View || {};
 var Route = Route || {};
 
