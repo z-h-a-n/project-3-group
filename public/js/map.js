@@ -7,8 +7,6 @@ var map = L.mapbox.map('map', null, {
       maxZoom: 18
   }).setView([30, 0], 2);
 
-map.panBy([-100, 0]); 
-
 
 var layers = {
     Dark: L.mapbox.tileLayer('mapbox.dark'),
@@ -37,7 +35,7 @@ function showLine (route) {
 	var start = { x: startX, y: startY}; 
 	var end = { x: endX, y: endY };
 	var pairs = [start, end];
-	var halfway = (Math.round(((startX + endX) /2)));
+	// var halfway = (Math.round(((startX + endX) /2)));
 	
 
 	function obj(ll) { return { y: ll[start], x: ll[end] }; }
@@ -67,9 +65,7 @@ function showLine (route) {
       };
     })(newLine._path), i * 100);
 
- 
-	
-	map.panBy([halfway, 0]); 
+		map.panBy([endX, 0]); 
 
 };
 
