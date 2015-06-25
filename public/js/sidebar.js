@@ -50,6 +50,7 @@ showSidebarOnPin();
 hideRetrievalButton();
 hideSidebar();
 showSidebar();
+$('#tweetbox').show();
 
 
 

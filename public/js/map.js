@@ -87,6 +87,10 @@ function showMarker (places) {
   			Place.show(e.latlng.lng, e.latlng.lat);
         // console.log(searchTwitter(e.latlng.lat,e.latlng.lng));
         twitterRoute.all(e.latlng.lng, e.latlng.lat);
+        $('#tweetbox').show();
+        $('#fillerdiv').hide();
+        
+
               
 		});
 	}
