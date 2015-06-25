@@ -25,6 +25,7 @@ function zoom(e) {
 
 L.control.fullscreen().addTo(map);
 
+
 function showLine (route) {
 	var startX = route.startlong;
 	var startY = route.startlat; 
@@ -33,10 +34,33 @@ function showLine (route) {
 
 	var start = { x: startX, y: startY}; 
 	var end = { x: endX, y: endY };
+	var pairs = [start, end];
+	for (var i = 0; i < pairs.length; i++) {
 	var generator = new arc.GreatCircle(start, end, { name: '' });
 	var line = generator.Arc(100, { offset: 10 });
-	L.geoJson(line.json()).addTo(map);
+	  var newLine = L.polyline(line.geometries[0].coords.map(function(c) {
+        return c.reverse();
+    }), {
+        color: '#fff',
+        weight: 1,
+        opacity: 0.5
+    })
+    .addTo(map);
+    var totalLength = newLine._path.getTotalLength();
+    newLine._path.classList.add('path-start');
+    newLine._path.style.strokeDashoffset = totalLength;
+    newLine._path.style.strokeDasharray = totalLength;
+    setTimeout((function(path) {
+        return function() {
+            // setting the strokeDashoffset to 0 triggers
+            // the animation.
+            path.style.strokeDashoffset = 0;
+        };
+    })(newLine._path), i * 100);
+  }
 };
+
+
 
 function showMarker (places) {
 	for (i=0; i<places.length; i++) {
@@ -93,26 +117,3 @@ map.on('click', function(e) {
 	}).addTo(map);
 	Place.create(e.latlng.lng, e.latlng.lat);
 });
-
-
-
-function lineDraw(route) {
-  var startX = route.startlong;
-  var startY = route.startlat; 
-  var endX = route.endlong;
-  var endY = route.endlat; 
-
-  var start = { x: startX, y: startY}; 
-  var end = { x: endX, y: endY };
-  var generator = new arc.GreatCircle(start, end, { name: '' });
-  var polyline = generator.Arc(100, { offset: 10 });
-  L.geoJson(line.json()).addTo(map);
-
-  polyline.addLatLng(
-    L.latLng(
-      Math.cos(pointsAdded /20) * 30,
-      pointsAdded));
-  map.setView([0, pointsAdded], 3);
-  if (++pointsAdded < 360) window.setTimeout(add, 100);
-}
-

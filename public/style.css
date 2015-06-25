@@ -74,7 +74,7 @@ path {
   line-height: center;
   padding: 100px;
   color: #ff4303;
-  font-family: 'Exo 2', sans-serif;
+  font-family: 'Roboto', sans-serif;
   text-shadow: 0 0 0.2em #00000F, 0 0 0.2em #00000F,
         0 0 0.2em #00000F;
   font-size: 70px;
@@ -94,6 +94,13 @@ path {
   border: none;
   text-align: center;
   color: white;
-  font-family: 'Exo 2', sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin-top: 110px;
 }
+
+.path-start {
+  -webkit-transition:stroke-dashoffset 5s ease-in;
+     -moz-transition:stroke-dashoffset 5s ease-in;
+       -o-transition:stroke-dashoffset 5s ease-in;
+          transition:stroke-dashoffset 5s ease-in;
+  }
