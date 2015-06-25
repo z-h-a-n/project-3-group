@@ -7,6 +7,9 @@ var map = L.mapbox.map('map', null, {
       maxZoom: 18
   }).setView([30, 0], 2);
 
+map.panBy([-100, 0]); 
+
+
 var layers = {
     Dark: L.mapbox.tileLayer('mapbox.dark'),
     Satellite: L.mapbox.tileLayer('mapbox.satellite')
@@ -31,14 +34,18 @@ function showLine (route) {
 	var startY = route.startlat; 
 	var endX = route.endlong;
 	var endY = route.endlat; 
-
 	var start = { x: startX, y: startY}; 
 	var end = { x: endX, y: endY };
+	var pairs = [start, end];
+	var halfway = (Math.round(((startX + endX) /2)));
+	
 
+	function obj(ll) { return { y: ll[start], x: ll[end] }; }
 
-	var generator = new arc.GreatCircle(start, end, { name: '' });
-	var line = generator.Arc(100, { offset: 10 });
-	var newLine = L.polyline(line.geometries[0].coords.map(function(c) {
+		for (var i = 0; i < pairs.length; i++) 
+			var generator = new arc.GreatCircle(start, end);
+			var line = generator.Arc(100, { offset: 10 });
+			var newLine = L.polyline(line.geometries[0].coords.map(function(c) {
         return c.reverse();
     }), {
         color: '#fff',
@@ -47,19 +54,23 @@ function showLine (route) {
     })
     .addTo(map);
 
-   var totalLength = newLine._path.getTotalLength();
+    var totalLength = newLine._path.getTotalLength();
     console.log('totalLength: ' + totalLength)
     console.log('newLine._path: ' + newLine._path)
     newLine._path.classList.add('path-start');
     newLine._path.style.strokeDashoffset = totalLength;
     newLine._path.style.strokeDasharray = totalLength;
 
-   setTimeout((function(path) {
+    setTimeout((function(path) {
       return function() {
           path.style.strokeDashoffset = 0;
       };
-    })(newLine._path), 0);
-  // }
+    })(newLine._path), i * 100);
+
+ 
+	
+	map.panBy([halfway, 0]); 
+
 };
 
 

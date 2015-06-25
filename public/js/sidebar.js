@@ -21,7 +21,7 @@ function hideSidebar() {
 
 function showSidebar() {
   $("#show-button").on("click", function(){
-    console.log("clickedshow!");
+    // console.log("clickedshow!");
     $.when($(".navbar-header").toggle(function() {
       $('.navbar-header').css('right', '0px')   
     })).done(function(){
