@@ -34,11 +34,11 @@ function showLine (route) {
 
 	var start = { x: startX, y: startY}; 
 	var end = { x: endX, y: endY };
-	var pairs = [start, end];
-	for (var i = 0; i < pairs.length; i++) {
+
+
 	var generator = new arc.GreatCircle(start, end, { name: '' });
 	var line = generator.Arc(100, { offset: 10 });
-	  var newLine = L.polyline(line.geometries[0].coords.map(function(c) {
+	var newLine = L.polyline(line.geometries[0].coords.map(function(c) {
         return c.reverse();
     }), {
         color: '#fff',
@@ -46,18 +46,20 @@ function showLine (route) {
         opacity: 0.5
     })
     .addTo(map);
-    var totalLength = newLine._path.getTotalLength();
+
+   var totalLength = newLine._path.getTotalLength();
+    console.log('totalLength: ' + totalLength)
+    console.log('newLine._path: ' + newLine._path)
     newLine._path.classList.add('path-start');
     newLine._path.style.strokeDashoffset = totalLength;
     newLine._path.style.strokeDasharray = totalLength;
-    setTimeout((function(path) {
-        return function() {
-            // setting the strokeDashoffset to 0 triggers
-            // the animation.
-            path.style.strokeDashoffset = 0;
-        };
-    })(newLine._path), i * 100);
-  }
+
+   setTimeout((function(path) {
+      return function() {
+          path.style.strokeDashoffset = 0;
+      };
+    })(newLine._path), 0);
+  // }
 };
 
 

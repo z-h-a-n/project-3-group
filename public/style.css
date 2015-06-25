@@ -60,12 +60,6 @@ button {
   z-index: -1;
 }
 
-path {
-	stroke-width: 1px;
-  stroke: white;
-  stroke-opacity: 1;
-  stroke-dasharray: 5,5;
-}
 
 #welcomeToSoar {
   background-image: url('../images/dazzle_camo.png');
