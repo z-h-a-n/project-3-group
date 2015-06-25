@@ -89,24 +89,36 @@ map.on('click', function(e) {
 	      'marker-color': '#FFFFFF',
 	      'marker-symbol': 'cross'
 	  }
-	}).addTo(map).openPopup();
+	}).addTo(map)
+		// .openPopup();
+
+	// var marker = e.layer,
+	//       feature = marker.feature;
+
+	  // var popupContent ='<form id="pin-form"><input class="popupInput" type="text" name="title" placeholder=" Title"><input class="popupInput" type="text" name="message" placeholder="Message"><button  class="popupInput" >Submit</button></form>';
+
+	//   e.layer.bindPopup(popupContent,{
+	//       closeButton: true
+	//   });
 
 });
 
-	map.on('layeradd', function(e){
+map.on('layeradd', function(e){
 
-		console.log("layeradd");
+	console.log("layeradd");
 
-		var marker = e.layer,
-	      feature = marker.feature;
+	// var marker = e.layer,
+ //      feature = marker.feature;
 
-	  var popupContent ='<form id="pin-form"><input class="popupInput" type="text" name="title" placeholder=" Title"><input class="popupInput" type="text" name="message" placeholder="Message"><button  class="popupInput" >Submit</button></form>';
 
-	  e.layer.bindPopup(popupContent,{
-	      closeButton: true
-	  });
+  var popupContent ='<form id="pin-form"><input class="popupInput" type="text" name="title" placeholder=" Title"><input class="popupInput" type="text" name="message" placeholder="Message"><button  class="popupInput" >Submit</button></form>';
 
-	})
+  e.layer.bindPopup(popupContent,{
+      closeButton: true
+  });
+  // debugger;
+
+})
 
 
 

@@ -31,6 +31,7 @@ Place = {
       // debugger;
       console.log(place[0].name);
       console.log(place[0].title); 
+
     });
   }
 }
@@ -41,6 +42,7 @@ PlaceView = {
       e.preventDefault();
       Place.update($(this).serialize());
       Place.all();
+      debugger;
     });
   },
 
