@@ -105,10 +105,10 @@ button {
   width: 30px;
 }
 
-.hidden-button {
-  display: none;
+#show-button {
   border: none;
   font-size: 25px;
-  width: 30px;
-  
+  width: 30px; 
+  position: absolute;
+  right: 0px; 
 }

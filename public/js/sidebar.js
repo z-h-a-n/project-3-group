@@ -1,27 +1,41 @@
+function hideRetrievalButton(){
+  $('#show-button').hide();
+};
+
+function showRetrievalButton(){
+  $('#show-button').show();
+};
+
+
 function hideSidebar() {
   $("#hide-button").on("click", function(){
     console.log("clicked!");
-    $(".navbar-header").toggle(function() {
-      $('.navbar-header').css('left', '0')
-      .done
+    $.when($(".navbar-header").toggle(function() {
+      $('.navbar-header').css('right', '0px')   
+    })).done(function(){
+      showRetrievalButton()
     });  
   });
 };
 
 
 function showSidebar() {
-  $('#show-button').on("click", function(){
-    console.log("clicked!");
-    $(".navbar-header").toggle(function() {
-      $('.navbar-header').css('left', '200px')
-    });  
-  })
+  $("#show-button").on("click", function(){
+    console.log("clickedshow!");
+    $.when($(".navbar-header").toggle(function() {
+      $('.navbar-header').css('right', '0px')   
+    })).done(function(){
+      hideRetrievalButton()
+     });  
+  });
 }
 
 $(document).ready(function(){
 
 console.log("hello");
+hideRetrievalButton();
 hideSidebar();
 showSidebar();
+
 
 });
