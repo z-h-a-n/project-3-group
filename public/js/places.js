@@ -1,13 +1,13 @@
 
-var View = View || {};
+var PlaceView = PlaceView || {};
 var Place = Place || {};
 
 $(document).ready(function(){
   // console.log("inside public/js/places.js")
-  View.initialize();
+  PlaceView.initialize();
 });
 
-var Place = {
+Place = {
   all: function(){
     $.get('/api/routes/' + $("path").attr('data-id') + '/places', 
       function(places){
@@ -15,27 +15,32 @@ var Place = {
     })    
   },
   create: function(lng, lat){
-    var id = $("path").attr('data-id')
-    $.post('/api/routes/' + id + '/places', {lng:lng, lat:lat})     
+    var id = $("path").attr('data-id');
+    $.post('/api/routes/' + id + '/places', {lng:lng, lat:lat}).done(function(place) {
+
+      $('img').last().attr("data-id", place._id)
+      console.log('marker with tooltip created')
+    //   $('#map').attr("data-id",'button.popupInput', place._id)
+
+    });
   },
   show: function(lng, lat) {
-    console.log(lng, lat);
     var id = $("path").attr('data-id')
     $.get('/api/routes/' + id + '/places', {lng:lng, lat:lat})
+  },
+  update: function(placeParams, lng, lat) {
+    // debugger;
+    console.log('clicked');
   }
 }
 
-View = {
+PlaceView = {
   initialize: function(){
-    $('#route-form').on('submit', function(e){
+    $('#map').on('submit', 'form#pin-form', function(e) {
       e.preventDefault();
-      // console.log($this);
-      Route.create($(this).serialize());
+      Place.update($(this).serialize());
+      Place.show();
     });
-    // Event delegation - Need to talk to TA about this
-    // $('#route-ul').on('click', '.NAMETHIS', function(e) {
-    //   route.delete($(this).data('id'));
-    // });
   },
 
   render: function(templateElement, object, parentElement){

@@ -18,14 +18,27 @@ input {
   margin-left: 10px;
   border: 1px solid;
   border-color: rgba(255, 230, 0, 1);
+  color: rgba(255, 230, 0, 1);
+}
+
+.popupInput {
+  margin-left: 0px;
+  display: block;
+  width: 235px;
 }
 
 button {
+  color: rgba(255, 230, 0, 1);
 	margin-left: 10px;
   width: 171px;
   background-color: black;
   border: 1px solid;
   text-align: left;
+}
+
+button:hover {
+  background-color: rgba(232, 118, 0, 1);
+  color: black;
 }
 
 ::-webkit-input-placeholder {

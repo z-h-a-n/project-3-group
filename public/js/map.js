@@ -36,6 +36,7 @@ function showLine (route) {
 	L.geoJson(line.json()).addTo(map);
 };
 
+//this function is called in Place.all
 function showMarker (places) {
 	for (i=0; i<places.length; i++) {
 		console.log(places[i].longitude);
@@ -43,6 +44,7 @@ function showMarker (places) {
 		var x = places[i].longitude;
 		var y = places[i].latitude;
 		var title = places[i].name;
+		var message = places[i].message;
 
 		var pin = L.mapbox.featureLayer({
 	    type: 'Feature',
@@ -55,7 +57,7 @@ function showMarker (places) {
 	    },
 	    properties: {
 	        title: title,
-	        description: '',
+	        description: message,
 	        'marker-size': 'small',
 	        'marker-color': '#FFFFFF',
 	        'marker-symbol': 'cross'
@@ -71,6 +73,7 @@ function showMarker (places) {
 
 // create marker
 map.on('click', function(e) {
+	Place.create(e.latlng.lng, e.latlng.lat);
 	L.mapbox.featureLayer({
     type: 'Feature',
     geometry: {
@@ -81,12 +84,30 @@ map.on('click', function(e) {
         ]
 	  },
 	  properties: {
-	      title: 'placeholder',
-	      description: 'placeholder map.js',
+	      title: 'click to add info',
+	      // description: 'placeholder map.js',
 	      'marker-size': 'small',
 	      'marker-color': '#FFFFFF',
 	      'marker-symbol': 'cross'
 	  }
-	}).addTo(map);
-	Place.create(e.latlng.lng, e.latlng.lat);
+	}).addTo(map).openPopup();
+
 });
+
+	map.on('layeradd', function(e){
+
+		console.log("layeradd");
+
+		var marker = e.layer,
+	      feature = marker.feature;
+
+	  var popupContent ='<form id="pin-form"><input class="popupInput" type="text" name="title" placeholder=" Title"><input class="popupInput" type="text" name="message" placeholder="Message"><button  class="popupInput" >Submit</button></form>';
+
+	  e.layer.bindPopup(popupContent,{
+	      closeButton: true
+	  });
+
+	})
+
+
+
