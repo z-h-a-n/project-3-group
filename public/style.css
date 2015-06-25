@@ -80,6 +80,9 @@ path {
   font-size: 70px;
 }
 
+.ui-dialog-titlebar {
+  height: 0px;
+}
 
 .no-close .ui-dialog-titlebar-close {
   display: none;

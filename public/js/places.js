@@ -11,12 +11,17 @@ var Place = {
   all: function(){
     $.get('/api/routes/' + $("path").attr('data-id') + '/places', 
       function(places){
-      showMarker(places); 
+      showMarker(places);
     })    
   },
   create: function(lng, lat){
+    var id = $("path").attr('data-id')
+    $.post('/api/routes/' + id + '/places', {lng:lng, lat:lat})     
+  },
+  show: function(lng, lat) {
     console.log(lng, lat);
-    $.post('/api/routes/' + $("path").attr('data-id'), {lng: lng, lat:lat} + '/places')
+    var id = $("path").attr('data-id')
+    $.get('/api/routes/' + id + '/places', {lng:lng, lat:lat})
   }
 }
 
