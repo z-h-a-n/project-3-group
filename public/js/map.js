@@ -36,6 +36,8 @@ function showLine (route) {
 	L.geoJson(line.json()).addTo(map);
 };
 
+
+
 function showMarker (places) {
 	for (i=0; i<places.length; i++) {
 		console.log(places[i].longitude);
@@ -62,9 +64,11 @@ function showMarker (places) {
 	    }
 		}).addTo(map);
 
-		pin.on('click', function(e) {
-			console.log(e);
-			Place.show(e.latlng.lng, e.latlng.lat);
+		  pin.on('click', function(e) {
+  			console.log(e);
+  			Place.show(e.latlng.lng, e.latlng.lat);
+        // console.log(searchTwitter(e.latlng.lat,e.latlng.lng));
+        twitterRoute.all(e.latlng.lng, e.latlng.lat);
 		});
 	}
 };
@@ -89,4 +93,28 @@ map.on('click', function(e) {
 	  }
 	}).addTo(map);
 	Place.create(e.latlng.lng, e.latlng.lat);
+
 });
+
+
+
+// var Twit = require('twit')
+
+// var twitter = new Twit({
+//    consumer_key: process.env.TWITTER_CONSUMER_KEY,     
+//    consumer_secret: process.env.TWITTER_CONSUMER_SECRET, 
+//    access_token: process.env.TWITTER_ACCESS_TOKEN,
+//    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET 
+// });
+
+// function searchTwitter(tweetLatitude, tweetLongitude){
+// var query = 'a';
+// var radius = '100mi';
+// var gofind = twitter.get('search/tweets', { q: query, geocode: tweetLatitude +',' + tweetLongitude + ',' + radius, }, function(err, data, response) {
+// console.log(data);
+// var tweets = data;
+// })
+// };
+
+
+

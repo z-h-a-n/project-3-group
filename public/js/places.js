@@ -2,11 +2,6 @@
 var View = View || {};
 var Place = Place || {};
 
-$(document).ready(function(){
-  // console.log("inside public/js/places.js")
-  View.initialize();
-});
-
 var Place = {
   all: function(){
     $.get('/api/routes/' + $("path").attr('data-id') + '/places', 
@@ -32,10 +27,7 @@ View = {
       // console.log($this);
       Route.create($(this).serialize());
     });
-    // Event delegation - Need to talk to TA about this
-    // $('#route-ul').on('click', '.NAMETHIS', function(e) {
-    //   route.delete($(this).data('id'));
-    // });
+   
   },
 
   render: function(templateElement, object, parentElement){
@@ -45,3 +37,12 @@ View = {
     parentElement.append(rendered);
   }
 }
+
+$(document).ready(function(){
+  // console.log("inside public/js/places.js")
+  View.initialize();
+});
+
+
+
+

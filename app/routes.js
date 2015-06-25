@@ -1,13 +1,19 @@
 var express = require('express');
 
 // These values are sent in from server.js, where we set them.
-module.exports = function(app, db, router, routesRoute, routeRoute, placesRoute, placeRoute, commentsRoute, commentRoute){
+module.exports = function(app, db, router, routesRoute, routeRoute, placesRoute, placeRoute, commentsRoute, commentRoute, twitter, tweetLatitude, tweetLongitude){
 
   //  Routes
-  app.get('/', function (req, res){
-   console.log(req.query);
-   res.render('index');
-  });
+  // Currently unused
+  // app.get('/', function (req, res){
+  //   console.log(req.query);
+  //   console.log('this should be the root');
+  //   res.render('index');
+  //   var radius = '100mi';
+  //   var gofind = twitter.get('search/tweets', { q: ' ', geocode: tweetLatitude +',' + tweetLongitude + ',' + radius, }, function(err, data, response) {
+  //     console.log(data)
+  //   });
+  // });
 
   // Routes ROUTES - Think of Routes as flight ids..
   // Create Routes GET Route - Path(here is routesRoute) is defined in server.js.
