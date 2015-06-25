@@ -44,7 +44,7 @@ button {
 .navbar-header {
 	width: 200px;
 	height: 100%;
-  position: fixed;
+  position: absolute;
   right: 0px;
   background-color: rgba(0, 0, 0, .5);
 
@@ -99,6 +99,16 @@ button {
           transition:stroke-dashoffset 5s ease-in;
   }
 
-  .container-fluid {
-    
-  }
+#hide-button {
+  border: none;
+  font-size: 25px;
+  width: 30px;
+}
+
+.hidden-button {
+  display: none;
+  border: none;
+  font-size: 25px;
+  width: 30px;
+  
+}
