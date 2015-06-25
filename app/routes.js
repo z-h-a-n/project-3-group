@@ -108,7 +108,9 @@ module.exports = function(app, db, router, routesRoute, routeRoute, placesRoute,
 
   // Create place POST Route
   // Create endpoint - /api/routes/:id/places - for POSTS
+  
   placesRoute.post(function(req, res) {
+    console.log("trying to make a new place")
     // Create a new instance of the Place model
     var place = new db.Place();
     // Set the place properties that came from the POST data
