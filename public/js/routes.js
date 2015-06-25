@@ -31,6 +31,7 @@ View = {
     $('#route-form').on('submit', function(e){
       e.preventDefault();
       Route.show($(this).serialize());
+      console.log($(this).serialize());
     });
   },
 

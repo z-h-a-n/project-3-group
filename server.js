@@ -52,7 +52,6 @@ app.get("/routes", function (req, res){
     });
   } else {
     db.Route.find({}, function (err, routes){
-    // console.log(routes);
       res.send(routes)
     });
   }
@@ -109,6 +108,22 @@ app.post("/api/routes/:id/places", function (req, res){
 			res.send(place);
 		});
 	});
+});
+
+// app.use(express.urlencoded());
+app.post("/api/routes/:id/places/:markerId", function (req, res){
+	var title = req.body.placeParams.split('&')[0].split('=')[1]
+	var message = req.body.placeParams.split('&')[1].split('=')[1]
+	db.Route.find({_id: req.params.id}, function(err, route) {
+		db.Place.find({_id: req.params.markerId}, function(err, place) {
+			place[0].name = title;
+			place[0].message = message;
+			place[0].save()
+			console.log(place);
+			res.send(place);
+		});
+	});		
+
 });
 
 

@@ -65,8 +65,7 @@ function showMarker (places) {
 		}).addTo(map);
 
 		pin.on('click', function(e) {
-			console.log(e);
-			Place.show(e.latlng.lng, e.latlng.lat);
+			// Place.show(e.latlng.lng, e.latlng.lat);
 		});
 	}
 };

@@ -17,20 +17,21 @@ Place = {
   create: function(lng, lat){
     var id = $("path").attr('data-id');
     $.post('/api/routes/' + id + '/places', {lng:lng, lat:lat}).done(function(place) {
-
       $('img').last().attr("data-id", place._id)
-      console.log('marker with tooltip created')
-    //   $('#map').attr("data-id",'button.popupInput', place._id)
-
     });
   },
   show: function(lng, lat) {
     var id = $("path").attr('data-id')
     $.get('/api/routes/' + id + '/places', {lng:lng, lat:lat})
   },
-  update: function(placeParams, lng, lat) {
-    // debugger;
-    console.log('clicked');
+  update: function(placeParams) {
+    var id = $("path").attr('data-id');
+    var markerId = $("img").last().attr('data-id')
+    $.post('/api/routes/' + id + '/places/' + markerId, {placeParams}).done(function(place) { 
+      // debugger;
+      console.log(place[0].name);
+      console.log(place[0].title); 
+    });
   }
 }
 
@@ -39,7 +40,7 @@ PlaceView = {
     $('#map').on('submit', 'form#pin-form', function(e) {
       e.preventDefault();
       Place.update($(this).serialize());
-      Place.show();
+      Place.all();
     });
   },
 
