@@ -44,7 +44,7 @@ button {
 .navbar-header {
 	width: 200px;
 	height: 100%;
-  position: fixed;
+  position: absolute;
   right: 0px;
   background-color: rgba(0, 0, 0, .5);
 
@@ -99,4 +99,18 @@ path {
   color: white;
   font-family: 'Exo 2', sans-serif;
   margin-top: 110px;
+}
+
+#hide-button {
+ border: none;
+ font-size: 25px;
+ width: 30px;
+}
+
+#show-button {
+ border: none;
+ font-size: 25px;
+ width: 30px; 
+ position: absolute;
+ right: 0px; 
 }

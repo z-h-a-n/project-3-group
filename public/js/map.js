@@ -1,6 +1,20 @@
 
 L.mapbox.accessToken = 'pk.eyJ1IjoiemhhbnciLCJhIjoiYzcwMjAwYzQ4MWYxZGQyMjkxMTFkYWQ0M2YxMjcwN2YifQ.q_Daj_EF2x_eGq6dl_jORw';
 
+
+
+function showSidebar() {
+  console.log('hitting show sidebar.');
+   
+ };
+
+
+function hideRetrievalButton(){
+ 
+};
+
+
+
 var map = L.mapbox.map('map', null, {
       maxZoom: 18
   }).setView([30, 0], 2);
@@ -65,10 +79,15 @@ function showMarker (places) {
 		}).addTo(map);
 
 		  pin.on('click', function(e) {
-  			console.log(e);
+        console.log('pinClick')
+  			$(".navbar-header").show(function() {
+          $('.navbar-header').css('right', '0px')
+          $('#show-button').hide();    
+          });  
   			Place.show(e.latlng.lng, e.latlng.lat);
         // console.log(searchTwitter(e.latlng.lat,e.latlng.lng));
         twitterRoute.all(e.latlng.lng, e.latlng.lat);
+              
 		});
 	}
 };
@@ -98,23 +117,7 @@ map.on('click', function(e) {
 
 
 
-// var Twit = require('twit')
-
-// var twitter = new Twit({
-//    consumer_key: process.env.TWITTER_CONSUMER_KEY,     
-//    consumer_secret: process.env.TWITTER_CONSUMER_SECRET, 
-//    access_token: process.env.TWITTER_ACCESS_TOKEN,
-//    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET 
-// });
-
-// function searchTwitter(tweetLatitude, tweetLongitude){
-// var query = 'a';
-// var radius = '100mi';
-// var gofind = twitter.get('search/tweets', { q: query, geocode: tweetLatitude +',' + tweetLongitude + ',' + radius, }, function(err, data, response) {
-// console.log(data);
-// var tweets = data;
-// })
-// };
 
 
+// Repeat of code on sidebar.js do could be dry'd up
 
