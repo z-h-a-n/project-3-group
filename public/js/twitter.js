@@ -27,6 +27,7 @@ var twitterRoute = {
         // console.log(tweet)
 
         TwitterView.render($('#tweet-template'), tweet, $('#tweetbox'));
+        console.log('tweets');
       });
     })
   }

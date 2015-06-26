@@ -20,7 +20,7 @@ $("#closeModal").on("click", function(e){
 
 $(document).ready(function(){
 
-  console.log("hello thus is modal");
+  console.log("hello this is modal");
   welcomeDialog();
 
 });

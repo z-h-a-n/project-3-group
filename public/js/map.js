@@ -19,6 +19,7 @@ var map = L.mapbox.map('map', null, {
       maxZoom: 18
   }).setView([30, 0], 2);
 
+
 var layers = {
     Dark: L.mapbox.tileLayer('mapbox.dark'),
     Satellite: L.mapbox.tileLayer('mapbox.satellite')
@@ -37,17 +38,47 @@ function zoom(e) {
 
 L.control.fullscreen().addTo(map);
 
+
 function showLine (route) {
 	var startX = route.startlong;
 	var startY = route.startlat; 
 	var endX = route.endlong;
 	var endY = route.endlat; 
-
 	var start = { x: startX, y: startY}; 
 	var end = { x: endX, y: endY };
-	var generator = new arc.GreatCircle(start, end, { name: '' });
-	var line = generator.Arc(100, { offset: 10 });
-	L.geoJson(line.json()).addTo(map);
+	var pairs = [start, end];
+	// var halfway = (Math.round(((startX + endX) /2)));
+	
+
+	function obj(ll) { return { y: ll[start], x: ll[end] }; }
+
+		for (var i = 0; i < pairs.length; i++) 
+			var generator = new arc.GreatCircle(start, end);
+			var line = generator.Arc(100, { offset: 10 });
+			var newLine = L.polyline(line.geometries[0].coords.map(function(c) {
+        return c.reverse();
+    }), {
+        color: '#fff',
+        weight: 1,
+        opacity: 0.5
+    })
+    .addTo(map);
+
+    var totalLength = newLine._path.getTotalLength();
+    console.log('totalLength: ' + totalLength)
+    console.log('newLine._path: ' + newLine._path)
+    newLine._path.classList.add('path-start');
+    newLine._path.style.strokeDashoffset = totalLength;
+    newLine._path.style.strokeDasharray = totalLength;
+
+    setTimeout((function(path) {
+      return function() {
+          path.style.strokeDashoffset = 0;
+      };
+    })(newLine._path), i * 100);
+
+		map.panBy([endX, 0]); 
+
 };
 
 
@@ -118,6 +149,7 @@ map.on('click', function(e) {
 	      'marker-color': '#FFFFFF',
 	      'marker-symbol': 'cross'
 	  }
+// <<<<<<< HEAD
 
 	}).addTo(map)
 		.openPopup();
@@ -147,3 +179,8 @@ map.on('layeradd', function(e){
 
 
 
+// =======
+// 	}).addTo(map);
+// 	Place.create(e.latlng.lng, e.latlng.lat);
+// });
+// >>>>>>> 4ec5df68c6679fa94b2cac4bf08f9392d9fbb320
