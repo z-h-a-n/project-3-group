@@ -2,12 +2,14 @@
 var PlaceView = PlaceView || {};
 var Place = Place || {};
 
+
 $(document).ready(function(){
   // console.log("inside public/js/places.js")
   PlaceView.initialize();
 });
 
 Place = {
+
   all: function(){
     $.get('/api/routes/' + $("path").attr('data-id') + '/places', 
       function(places){
@@ -45,6 +47,7 @@ PlaceView = {
       // Place.all();
       // place.show();
     });
+
   },
 
   render: function(templateElement, object, parentElement){
@@ -54,3 +57,12 @@ PlaceView = {
     parentElement.append(rendered);
   }
 }
+
+$(document).ready(function(){
+  // console.log("inside public/js/places.js")
+  View.initialize();
+});
+
+
+
+

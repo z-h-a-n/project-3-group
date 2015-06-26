@@ -56,8 +56,8 @@ button:hover {
 
 .navbar-header {
 	width: 200px;
-	height: 100%;
-  position: fixed;
+	/*height: 100%;*/
+  position: absolute;
   right: 0px;
   background-color: rgba(0, 0, 0, .5);
 
@@ -115,7 +115,48 @@ path {
 }
 
 
+#hide-button {
+ border: none;
+ font-size: 25px;
+ width: 30px;
+}
+
+#show-button {
+ border: none;
+ font-size: 25px;
+ width: 30px; 
+ position: absolute;
+ right: 0px; 
+}
+
+#tweetbox{
+  display: block;
+  margin-top: 0em;
+  background-color: black;
+  margin-left: 10px;
+  border: 1px solid;
+  border-color: rgba(255, 230, 0, 1);
+  width: 159px !important;
+  overflow: hidden;
+  height: 100% !important;
+  padding: 5px;
+}
+
+#tweetbox .row{
+
+  padding-bottom: 5px;
+  margin-top: 1px solid;
+
+}
+.row:nth-child(odd) {
+    background-color: rgba(50, 50, 50, .7);
+
+}
 
 
 
+#fillerdiv{
+    margin-bottom: 1px solid;
+    height: 400px;
+}
 

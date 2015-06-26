@@ -5,6 +5,21 @@
 </head>
 
 <body>
+
+<script type="x-tmpl-mustache" id="tweet-template">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 tweet"> 
+      <img src="{{user_profile_image}}" alt="" class="avatar pull-left">
+      <div class="name">
+       
+        <span class='username'>@{{ user.screen_name }} </span>
+      </div>
+      <div class="contents"><span class="text"> {{ text }} </span></div>
+    </div>
+  </div>
+</script>
+
+
   <div id="welcomeToSoar">
     WELCOME TO SOAR! <br> Discover what's out there...
     <button id="closeModal">Let's do it!</button>
@@ -16,9 +31,10 @@
   <main>    
     <div id="row">  
       <div class="col-sm-8"> 
-        <div id='map' class='dark' ></div>
+        <div id='map' class='dark'></div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-4" >
+      
         <!-- <div class="well">
           All Routes:</br>
           <ul id="list-routes">
@@ -27,14 +43,17 @@
           <ul id="list-places">
             </ul>
         </div> -->
+        
       </div>     
     </div>
   </main>
 <script src="/js/places.js"></script>
 <script src="/js/routes.js"></script>
 <script src="/js/app.js"></script>
+<script src="/js/twitter.js"></script>
 <script src="/js/map.js"></script>
 <script src="/js/modals.js"></script>
+<script src="/js/sidebar.js"></script>
 </body>
 <footer>
     <% include partials/footer %>

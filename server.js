@@ -3,7 +3,9 @@ var express = require('express');
 var http = require('http');
 var bodyParser = require ('body-parser');
 var db = require('./models');
-var Twit = require('twit')
+
+// This is probably redundant
+var $ = require('jquery')(require("jsdom").jsdom().parentWindow);
 
 //  Express
 var app = express();
@@ -17,6 +19,8 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 
 // Twitter
+var Twit = require('twit')
+
 var twitter = new Twit({
    consumer_key: process.env.TWITTER_CONSUMER_KEY,     
    consumer_secret: process.env.TWITTER_CONSUMER_SECRET, 
@@ -24,17 +28,11 @@ var twitter = new Twit({
    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET 
 });
 
-// Assign what you want the lat long to be. Search is run in app.js.  Radius is set to 100miles in app.js.
-var tweetLatitude = '37.781157'
-var tweetLongitude = '-122.398720'
-
-// Should return a value called tweets.
-
 //  Routes
 app.get('/', function (req, res){
- // console.log(req.query);
- res.render('index');
+    res.render('index');
 });
+
 
 app.get("/routes/:id/edit", function (req, res) {
   console.log(req.params.id);
@@ -56,6 +54,16 @@ app.get("/routes", function (req, res){
     });
   }
 });
+
+app.post('/tweets', function(req, res){
+  var tweetLatitude = req.body.lat 
+  var tweetLongitude = req.body.lng
+  var radius = '100mi';
+  var gofind = twitter.get('search/tweets', { q: ' ', geocode: tweetLatitude +',' + tweetLongitude + ',' + radius, }, function(err, data, response) {
+    console.log(data, JSON.stringify(data))
+    res.send(data); 
+  });
+})
 
 // from api
 app.post("/routes/:id/update", function (req, res) {
@@ -100,6 +108,7 @@ app.get("/api/routes/:id/places", function (req, res){
  });
 });
 
+
 app.post("/api/routes/:id/places", function (req, res){
 	db.Route.find({_id: req.params.id}, function(err, route) {
 		db.Place.create({longitude: req.body.lng, latitude: req.body.lat}, function(err, place){
@@ -127,7 +136,6 @@ app.post("/api/routes/:id/places/:markerId", function (req, res){
 });
 
 
-
 //  Start Server
 var server = http.createServer(app);
 server.listen(process.env.PORT || 3000);
@@ -147,8 +155,9 @@ var placeRoute = router.route('/routes/:route_id/places/:place_id');
 var commentsRoute = router.route('/routes/:route_id/places/:place_id/comments');
 var commentRoute = router.route('/routes/:route_id/places/:place_id/comments/:comment_id');
 
-require('./app/routes.js')(app, db, router, routesRoute, routeRoute, placesRoute, placeRoute, commentsRoute, commentRoute);
-// require('./public/js/app.js')(twitter);
+
+require('./app/routes.js')(app, db, router, routesRoute, routeRoute, placesRoute, placeRoute, commentsRoute, commentRoute, twitter);
+
 // Sending the needed stuff to routes.js
 
 // This line may be defunct but not 100% sure on that -A

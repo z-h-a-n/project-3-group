@@ -1,6 +1,20 @@
 
 L.mapbox.accessToken = 'pk.eyJ1IjoiemhhbnciLCJhIjoiYzcwMjAwYzQ4MWYxZGQyMjkxMTFkYWQ0M2YxMjcwN2YifQ.q_Daj_EF2x_eGq6dl_jORw';
 
+
+
+function showSidebar() {
+  console.log('hitting show sidebar.');
+   
+ };
+
+
+function hideRetrievalButton(){
+ 
+};
+
+
+
 var map = L.mapbox.map('map', null, {
       maxZoom: 18
   }).setView([30, 0], 2);
@@ -36,6 +50,7 @@ function showLine (route) {
 	L.geoJson(line.json()).addTo(map);
 };
 
+
 //this function is called in Place.all
 function showMarker (places) {
 	for (i=0; i<places.length; i++) {
@@ -64,8 +79,21 @@ function showMarker (places) {
 	    }
 		}).addTo(map);
 
-		pin.on('click', function(e) {
-			// Place.show(e.latlng.lng, e.latlng.lat);
+
+		  pin.on('click', function(e) {
+        console.log('pinClick')
+  			$(".navbar-header").show(function() {
+          $('.navbar-header').css('right', '0px')
+          $('#show-button').hide();    
+          });  
+  			Place.show(e.latlng.lng, e.latlng.lat);
+        // console.log(searchTwitter(e.latlng.lat,e.latlng.lng));
+        twitterRoute.all(e.latlng.lng, e.latlng.lat);
+        $('#tweetbox').show();
+        $('#fillerdiv').hide();
+        
+
+              
 		});
 	}
 };
@@ -90,10 +118,13 @@ map.on('click', function(e) {
 	      'marker-color': '#FFFFFF',
 	      'marker-symbol': 'cross'
 	  }
+
 	}).addTo(map)
 		.openPopup();
 
+
 });
+
 
 
 

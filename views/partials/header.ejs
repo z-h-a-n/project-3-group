@@ -1,14 +1,20 @@
 
 <nav class="navbar navbar-default" role="navigation">
 
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <h1>SOAR</h1>
-      <form id="route-form" class="form-inline">
-        <input name="origin" type="text" class="form-control" id="new-food" placeholder=" Origin">
-        <input name="destination" class="form-control" placeholder=" Destination">
-        <button type="submit" class="btn btn-default"> Explore Route</button>
-      </form> 
-    </div> 
-  </div>
+ <button id="show-button"> < </button>
+
+ <div class="container-fluid">
+   <div class="navbar-header">
+     <button id="hide-button"> > </button>
+     <h1>SOAR</h1>
+     <form id="route-form" class="form-inline">
+       <input name="origin" type="text" class="form-control" id="new-food" placeholder=" Origin">
+       <input name="destination" class="form-control" placeholder=" Destination">
+       <button type="submit" class="btn btn-default"> Explore Route</button>
+     </form> 
+
+      <div id='fillerdiv'> </div>
+      <div id='tweetbox'>   </div>     
+   </div> 
+ </div>
 </nav>
