@@ -70,6 +70,7 @@ function showMarker (places) {
 	}
 };
 
+
 // create marker
 map.on('click', function(e) {
 	Place.create(e.latlng.lng, e.latlng.lat);
@@ -89,24 +90,29 @@ map.on('click', function(e) {
 	      'marker-color': '#FFFFFF',
 	      'marker-symbol': 'cross'
 	  }
-	}).addTo(map).openPopup();
+	}).addTo(map)
+		.openPopup();
 
 });
 
-	map.on('layeradd', function(e){
 
-		console.log("layeradd");
 
-		var marker = e.layer,
-	      feature = marker.feature;
+// create custom marker on layeradd
+map.on('layeradd', function(e){
 
-	  var popupContent ='<form id="pin-form"><input class="popupInput" type="text" name="title" placeholder=" Title"><input class="popupInput" type="text" name="message" placeholder="Message"><button  class="popupInput" >Submit</button></form>';
+	console.log("layeradd");
 
-	  e.layer.bindPopup(popupContent,{
-	      closeButton: true
-	  });
+	var marker = e.layer,
+      feature = marker.feature;
 
-	})
+  var popupContent ='<form id="pin-form"><input class="popupInput" type="text" name="title" placeholder=" Title"><input class="popupInput" type="text" name="message" placeholder="Message"><button  class="popupInput" >Submit</button></form>';
+
+  e.layer.bindPopup(popupContent,{
+      closeButton: true
+  });
+  // debugger;
+
+})
 
 
 

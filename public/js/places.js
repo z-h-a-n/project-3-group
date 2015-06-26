@@ -28,7 +28,8 @@ Place = {
     var id = $("path").attr('data-id');
     var markerId = $("img").last().attr('data-id')
     $.post('/api/routes/' + id + '/places/' + markerId, {placeParams}).done(function(place) { 
-      // debugger;
+      L.marker([place[0].latitude, place[0].longitude]).bindLabel(place[0].name, place[0].message).addTo(map);
+      $("img[src='//api.tiles.mapbox.com/mapbox.js/v2.2.0/images/marker-icon-2x.png']").css("opacity", 0);
       console.log(place[0].name);
       console.log(place[0].title); 
     });
@@ -40,7 +41,9 @@ PlaceView = {
     $('#map').on('submit', 'form#pin-form', function(e) {
       e.preventDefault();
       Place.update($(this).serialize());
-      Place.all();
+      $('div.leaflet-popup').hide()
+      // Place.all();
+      // place.show();
     });
   },
 
